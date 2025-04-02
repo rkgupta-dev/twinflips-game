@@ -62,14 +62,43 @@
     </v-row>
 
     <v-container class="text-center">
-      <v-snackbar v-model="showCongrats" :timeout="5000">
-        🎉 Congratulations! You've found all the matches! 🎈
-        <template v-slot:action="{ attrs }">
-          <v-btn text v-bind="attrs" @click="showCongrats = false">
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
+      <v-dialog v-model="showTimerDialog" persistent max-width="300">
+        <v-card
+          class="pa-4 rounded-xl text-center"
+          color="rgba(15, 15, 15, 0.8)"
+          dark
+          elevation="12"
+        >
+          <v-card-title class="d-flex flex-column align-center">
+            <div class="text-h4 font-weight-bold mt-3 animate-fade">🎉</div>
+            <div class="text-h5 font-weight-bold mt-3 animate-fade">
+              Congratulations!
+            </div>
+            <div class="text-subtitle-1 mt-1 animate-fade">
+              You’ve found all the matches!
+            </div>
+          </v-card-title>
+
+          <v-card-text
+            class="d-flex align-center justify-center mt-4 animate-scale"
+          >
+            <v-icon size="55" color="cyan">mdi-timer</v-icon>
+            <span class="ml-3 text-h5 font-weight-bold">{{ formatTime }}</span>
+          </v-card-text>
+
+          <v-card-actions class="justify-center">
+            <v-btn
+              color="primary"
+              elevation="5"
+              rounded
+              class="px-6 py-3 animate-button"
+              @click="showTimerDialog = false"
+            >
+              OK
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-container>
   </v-container>
 </template>
@@ -89,6 +118,7 @@ export default {
       timer: 0,
       timerInterval: null,
       gameStarted: false,
+      showTimerDialog: false, // Shows timer only after completion
     };
   },
   computed: {
@@ -167,8 +197,9 @@ export default {
 
             if (this.matches === this.cards.length / 2) {
               this.showCongrats = true;
-              this.triggerConfetti(); // Trigger confetti animation
+              this.triggerConfetti();
               this.stopTimer();
+              this.showTimerDialog = true; // Show timer after completion
             }
           }, 500);
         } else {
@@ -188,6 +219,7 @@ export default {
       this.gameStarted = false;
       this.stopTimer();
       this.timer = 0;
+      this.showTimerDialog = false; // Hide timer when game resets
     },
 
     startTimer() {
