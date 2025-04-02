@@ -6,9 +6,14 @@
 
         <div>
           <v-chip class="mr-2" color="primary" outlined>
+            <v-icon left>mdi-cards</v-icon>
             Matches: {{ matches }} of {{ cards.length / 2 }}
           </v-chip>
-          <v-chip color="primary" outlined> Time: {{ formatTime }} </v-chip>
+
+          <v-chip color="primary" outlined>
+            <v-icon left>mdi-timer-outline</v-icon>
+            Time: {{ formatTime }}
+          </v-chip>
         </div>
 
         <v-card class="my-5 custom-border" :class="themeClass">

@@ -10,11 +10,17 @@
           transition="scale-transition"
           width="40"
         />
-        <span class="text-h5">TwinFlip</span>
+        <span class="text-h6">TwinFlip</span>
       </div>
 
       <v-spacer></v-spacer>
 
+      <!-- About Page Icon Button -->
+      <v-btn icon to="/about">
+        <v-icon>mdi-information-outline</v-icon>
+      </v-btn>
+
+      <!-- Dark Mode Toggle -->
       <v-btn @click="toggleTheme" icon>
         <v-icon>{{
           $vuetify.theme.dark ? "mdi-weather-night" : "mdi-white-balance-sunny"
@@ -23,20 +29,16 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
 export default {
   name: "App",
 
-  components: {
-    HelloWorld,
-  },
+  components: {},
 
   data: () => ({
     // No need for additional data properties
