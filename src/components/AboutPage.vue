@@ -1,5 +1,12 @@
 <template>
   <div>
+    <v-app-bar app color="primary" dark>
+      <v-btn icon @click="$router.go(-1)">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>About Us</v-toolbar-title>
+    </v-app-bar>
     <v-container fluid class="about-page pa-4 pa-md-8">
       <v-parallax
         src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"

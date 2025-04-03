@@ -1,110 +1,126 @@
 <template>
-  <v-container fluid class="bg-purple">
-    <v-row justify="center">
-      <v-col cols="12" md="8" lg="6" class="text-center">
-        <h1>Memory Match Game</h1>
+  <div>
+    <v-app-bar app color="primary" dark>
+      <v-btn icon @click="$router.go(-1)">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>Memory Match Game</v-toolbar-title>
+    </v-app-bar>
+    <v-container fluid>
+      <div>
+        <v-row justify="center">
+          <v-col cols="12" md="8" lg="6" class="text-center">
+            <div class="my-3">
+              <v-chip class="mr-2" color="primary" outlined>
+                <v-icon left>mdi-cards</v-icon>
+                Matches: {{ matches }} of {{ cards.length / 2 }}
+              </v-chip>
 
-        <div>
-          <v-chip class="mr-2" color="primary" outlined>
-            <v-icon left>mdi-cards</v-icon>
-            Matches: {{ matches }} of {{ cards.length / 2 }}
-          </v-chip>
+              <v-chip color="primary" outlined>
+                <v-icon left>mdi-timer-outline</v-icon>
+                Time: {{ formatTime }}
+              </v-chip>
+            </div>
 
-          <v-chip color="primary" outlined>
-            <v-icon left>mdi-timer-outline</v-icon>
-            Time: {{ formatTime }}
-          </v-chip>
-        </div>
-
-        <v-card class="my-5 custom-border" :class="themeClass">
-          <v-card-text>
-            <v-row>
-              <v-col
-                v-for="(card, index) in cards"
-                :key="card.id"
-                cols="4"
-                sm="4"
-              >
-                <v-card
-                  @click="handleCardClick(index)"
-                  height="100"
-                  class="d-flex align-center justify-center custom-border flip-container"
-                  :class="{
-                    flipped: flippedIndexes.includes(index) || card.isMatched,
-                  }"
-                >
-                  <div class="card-inner">
-                    <!-- Front Side (Hidden Icon) -->
-                    <div class="card-front d-flex align-center justify-center">
-                      <v-icon>mdi-help</v-icon>
-                    </div>
-
-                    <!-- Back Side (Revealed Icon) -->
+            <v-card class="my-5 custom-border" :class="themeClass">
+              <v-card-text>
+                <v-row>
+                  <v-col
+                    v-for="(card, index) in cards"
+                    :key="card.id"
+                    cols="4"
+                    sm="4"
+                  >
                     <v-card
-                      class="card-back d-flex align-center justify-center"
+                      @click="handleCardClick(index)"
+                      height="100"
+                      class="d-flex align-center justify-center custom-border flip-container"
+                      :class="{
+                        flipped:
+                          flippedIndexes.includes(index) || card.isMatched,
+                      }"
                     >
-                      <v-icon large :color="card.color">{{ card.icon }}</v-icon>
+                      <div class="card-inner">
+                        <!-- Front Side (Hidden Icon) -->
+                        <div
+                          class="card-front d-flex align-center justify-center"
+                        >
+                          <v-icon>mdi-help</v-icon>
+                        </div>
+
+                        <!-- Back Side (Revealed Icon) -->
+                        <v-card
+                          class="card-back d-flex align-center justify-center"
+                        >
+                          <v-icon large :color="card.color">{{
+                            card.icon
+                          }}</v-icon>
+                        </v-card>
+                      </div>
                     </v-card>
-                  </div>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-card>
 
-        <v-btn
-          @click="resetGame"
-          depressed
-          rounded
-          large
-          color="primary"
-          class="my-2"
-        >
-          <v-icon>mdi-restart</v-icon> Start New Game
-        </v-btn>
-      </v-col>
-    </v-row>
-
-    <v-container class="text-center">
-      <v-dialog v-model="showTimerDialog" persistent max-width="300">
-        <v-card
-          class="pa-4 rounded-xl text-center"
-          color="rgba(15, 15, 15, 0.8)"
-          dark
-          elevation="12"
-        >
-          <v-card-title class="d-flex flex-column align-center">
-            <div class="text-h4 font-weight-bold mt-3 animate-fade">🎉</div>
-            <div class="text-h5 font-weight-bold mt-3 animate-fade">
-              Congratulations!
-            </div>
-            <div class="text-subtitle-1 mt-1 animate-fade">
-              You’ve found all the matches!
-            </div>
-          </v-card-title>
-
-          <v-card-text
-            class="d-flex align-center justify-center mt-4 animate-scale"
-          >
-            <v-icon size="55" color="cyan">mdi-timer</v-icon>
-            <span class="ml-3 text-h5 font-weight-bold">{{ formatTime }}</span>
-          </v-card-text>
-
-          <v-card-actions class="justify-center">
             <v-btn
-              color="primary"
-              elevation="5"
+              @click="resetGame"
+              depressed
               rounded
-              class="px-6 py-3 animate-button"
-              @click="showTimerDialog = false"
+              large
+              color="primary"
+              class="my-2"
             >
-              OK
+              <v-icon>mdi-restart</v-icon> Start New Game
             </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+          </v-col>
+        </v-row>
+      </div>
+
+      <v-container class="text-center">
+        <v-dialog v-model="showTimerDialog" persistent max-width="300">
+          <v-card
+            class="pa-4 rounded-xl text-center"
+            color="rgba(15, 15, 15, 0.8)"
+            dark
+            elevation="12"
+          >
+            <v-card-title class="d-flex flex-column align-center">
+              <div class="text-h4 font-weight-bold mt-3 animate-fade">🎉</div>
+              <div class="text-h5 font-weight-bold mt-3 animate-fade">
+                Congratulations!
+              </div>
+              <div class="text-subtitle-1 mt-1 animate-fade">
+                You’ve found all the matches!
+              </div>
+            </v-card-title>
+
+            <v-card-text
+              class="d-flex align-center justify-center mt-4 animate-scale"
+            >
+              <v-icon size="55" color="cyan">mdi-timer</v-icon>
+              <span class="ml-3 text-h5 font-weight-bold">{{
+                formatTime
+              }}</span>
+            </v-card-text>
+
+            <v-card-actions class="justify-center">
+              <v-btn
+                color="primary"
+                elevation="5"
+                rounded
+                class="px-6 py-3 animate-button"
+                @click="showTimerDialog = false"
+              >
+                OK
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-container>
     </v-container>
-  </v-container>
+  </div>
 </template>
 
 <script>
