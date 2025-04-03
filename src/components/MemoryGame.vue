@@ -28,19 +28,23 @@
                 <v-card
                   @click="handleCardClick(index)"
                   height="100"
-                  class="d-flex align-center justify-center custom-border"
-                  :class="themeClass"
+                  class="d-flex align-center justify-center custom-border flip-container"
+                  :class="{
+                    flipped: flippedIndexes.includes(index) || card.isMatched,
+                  }"
                 >
-                  <div>
-                    <div
-                      v-if="flippedIndexes.includes(index) || card.isMatched"
-                      class="d-flex align-center justify-center"
-                    >
-                      <v-icon large :color="card.color">{{ card.icon }}</v-icon>
-                    </div>
-                    <div v-else class="d-flex align-center justify-center">
+                  <div class="card-inner">
+                    <!-- Front Side (Hidden Icon) -->
+                    <div class="card-front d-flex align-center justify-center">
                       <v-icon>mdi-help</v-icon>
                     </div>
+
+                    <!-- Back Side (Revealed Icon) -->
+                    <v-card
+                      class="card-back d-flex align-center justify-center"
+                    >
+                      <v-icon large :color="card.color">{{ card.icon }}</v-icon>
+                    </v-card>
                   </div>
                 </v-card>
               </v-col>
@@ -253,5 +257,43 @@ export default {
 /* Dark Mode Border */
 .dark-mode {
   --border-color: #42a5f5; /* Lighter shade for visibility */
+}
+
+.flip-container {
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  background: linear-gradient(
+    45deg,
+    rgba(106, 27, 154, 0.9),
+    rgba(66, 165, 245, 0.9)
+  );
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 10px; /* Smooth rounded corners */
+}
+
+.card-back {
+  transform: rotateY(180deg);
 }
 </style>
