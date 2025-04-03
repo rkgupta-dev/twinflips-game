@@ -12,10 +12,11 @@ export default {
 
   components: {},
 
-  data: () => ({
-    // No need for additional data properties
-  }),
-
+  data() {
+    return {
+      // No need for additional data properties
+    };
+  },
   methods: {},
 };
 </script>

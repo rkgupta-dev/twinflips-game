@@ -43,36 +43,28 @@
       </div>
 
       <!-- Section Title -->
-      <div class="my-5 font-weight-bold text-primary">
+      <div class="my-4 text-subtitle-1 font-weight-bold text-primary">
         All Games
         <v-icon right color="primary">mdi-gamepad-variant</v-icon>
       </div>
 
       <!-- All Games Grid with 3 cards per row -->
-      <v-row justify="center">
-        <v-col v-for="(game, index) in allGames" :key="index" cols="6">
+      <v-row dense>
+        <v-col v-for="game in allGames" :key="game.title" cols="4">
           <v-card
-            class="elevation-5 custom-border"
-            rounded="xl"
             @click="$router.push(game.link)"
-            :aria-label="`Go to ${game.title}`"
-            role="button"
-            tabindex="0"
-            @keydown.enter="$router.push(game.link)"
+            class="game-card custom-border"
             :class="themeClass"
           >
             <v-img
               :src="game.image"
-              lazy-src="https://via.placeholder.com/150"
-              height="100px"
+              class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              height="115px"
               contain
-            ></v-img>
-
-            <v-card-text class="text-center py-2">
-              <div class="text-subtitle-2 font-weight-bold">
-                {{ game.title }}
-              </div>
-            </v-card-text>
+            >
+              <v-card-subtitle>{{ game.title }}</v-card-subtitle>
+            </v-img>
           </v-card>
         </v-col>
       </v-row>
@@ -111,6 +103,11 @@ export default {
           title: "Snake",
           image: "https://cdn-icons-png.flaticon.com/256/10757/10757414.png",
           link: "/snake-game",
+        },
+        {
+          title: "Tic-Tac-Toe",
+          image: "https://cdn-icons-png.flaticon.com/256/9933/9933737.png",
+          link: "/xoxo-game",
         },
       ],
     };
@@ -157,5 +154,22 @@ export default {
 
 .rounded-image {
   border-radius: 15px;
+}
+
+.game-card {
+  background-image: linear-gradient(
+    111.4deg,
+    rgba(7, 7, 9, 1) 6.5%,
+    rgba(27, 24, 113, 1) 93.2%
+  );
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.game-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
 }
 </style>
