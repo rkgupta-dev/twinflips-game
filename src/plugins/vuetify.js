@@ -11,7 +11,7 @@ export default new Vuetify({
     dark: savedTheme, // Set initial theme from localStorage
     themes: {
       light: {
-        primary: "#6A1B9A",
+        primary: "#673AB7",
       },
       dark: {
         primary: "#42A5F5",
