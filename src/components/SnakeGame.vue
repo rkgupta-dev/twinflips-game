@@ -11,9 +11,12 @@
       <div>
         <div class="text-center">
           <div>
-            <v-chip color="primary">Score: {{ score }}</v-chip>
-            <v-chip color="secondary" class="ml-2"
-              >High Score: {{ highScore }}</v-chip
+            <v-chip color="primary">
+              <v-icon small left>mdi-star</v-icon> Score: {{ score }}</v-chip
+            >
+            <v-chip color="secondary" class="ml-2">
+              <v-icon small left>mdi-trophy</v-icon> High Score:
+              {{ highScore }}</v-chip
             >
           </div>
 

@@ -109,6 +109,11 @@ export default {
           image: "https://cdn-icons-png.flaticon.com/256/9933/9933737.png",
           link: "/xoxo-game",
         },
+        {
+          title: "Flappy Bird",
+          image: "https://cdn-icons-png.flaticon.com/128/1496/1496830.png",
+          link: "/flappybird-game",
+        },
       ],
     };
   },
