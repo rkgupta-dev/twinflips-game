@@ -150,6 +150,7 @@ export default {
 
     this.birdImage = new Image();
     this.birdImage.src = "https://cdn-icons-png.flaticon.com/128/92/92009.png";
+    // https://cdn-icons-png.flaticon.com/128/1496/1496830.png
 
     this.clearCanvas(); // Initial blank canvas
   },
@@ -199,8 +200,11 @@ export default {
       });
     },
     drawGame() {
-      this.ctx.clearRect(0, 0, 400, 500);
-      this.ctx.fillStyle = "skyblue";
+      const gradient = this.ctx.createLinearGradient(0, 0, 0, 500);
+      gradient.addColorStop(0, "#8fe8ff"); // light blue top
+      gradient.addColorStop(1, "#d1f3fb"); // soft sky blue bottom
+
+      this.ctx.fillStyle = gradient;
       this.ctx.fillRect(0, 0, 400, 500);
 
       // Draw clouds
@@ -237,8 +241,11 @@ export default {
       this.showDialog = true;
     },
     clearCanvas() {
-      this.ctx.clearRect(0, 0, 400, 500);
-      this.ctx.fillStyle = "skyblue";
+      const gradient = this.ctx.createLinearGradient(0, 0, 0, 500);
+      gradient.addColorStop(0, "#8fe8ff"); // light blue top
+      gradient.addColorStop(1, "#d1f3fb"); // soft sky blue bottom
+
+      this.ctx.fillStyle = gradient;
       this.ctx.fillRect(0, 0, 400, 500);
 
       // Draw clouds only
