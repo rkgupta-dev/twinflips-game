@@ -21,6 +21,22 @@
           </div>
 
           <div class="game-board-wrapper">
+            <!-- Show this if the game hasn't started yet -->
+            <div v-if="!gameStarted" class="game-start-overlay">
+              <div class="text-center">
+                <div class="d-flex justify-center mb-4">
+                  <v-img
+                    src="https://cdn-icons-png.flaticon.com/256/10757/10757414.png"
+                    max-width="100"
+                    contain
+                  ></v-img>
+                </div>
+                <v-btn rounded large color="primary" @click="startGame">
+                  Start Game
+                </v-btn>
+              </div>
+            </div>
+
             <canvas
               ref="gameCanvas"
               :width="boardSize"
@@ -123,6 +139,7 @@ export default {
       gameInterval: null,
       gameOver: false,
       isPaused: false,
+      gameStarted: false,
       score: 0,
       highScore: 0,
       difficulty: "medium",
@@ -154,7 +171,6 @@ export default {
 
   mounted() {
     this.cellSize = this.boardSize / this.gridSize;
-    this.setupGame();
     this.setupEventListeners();
 
     // Load high score from localStorage if available
@@ -170,6 +186,10 @@ export default {
   },
 
   methods: {
+    startGame() {
+      this.gameStarted = true;
+      this.setupGame();
+    },
     setupGame() {
       // Initialize snake in the middle of the board
       const middle = Math.floor(this.gridSize / 2);
@@ -494,6 +514,20 @@ export default {
 
 .direction-btn {
   margin: 0 10px; /* Adds horizontal spacing without breaking alignment */
+}
+
+.game-start-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  border-radius: 8px;
 }
 
 @media (min-width: 800px) {

@@ -44,7 +44,7 @@
 
       <!-- Section Title -->
       <div class="my-4 text-subtitle-1 font-weight-bold text-primary">
-        All Games
+        Top Games
         <v-icon right color="primary">mdi-gamepad-variant</v-icon>
       </div>
 
