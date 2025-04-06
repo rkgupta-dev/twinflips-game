@@ -6,19 +6,19 @@
           alt="Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn-icons-png.flaticon.com/128/9192/9192463.png"
+          src="https://cdn-icons-png.flaticon.com/128/720/720284.png"
           transition="scale-transition"
           width="40"
         />
-        <span class="text-h6">TwinFlip</span>
+        <span class="text-h6">GameZone</span>
       </div>
 
       <v-spacer></v-spacer>
 
       <!-- About Page Icon Button -->
-      <v-btn icon to="/about">
+      <!-- <v-btn icon to="/about">
         <v-icon>mdi-information-outline</v-icon>
-      </v-btn>
+      </v-btn> -->
 
       <!-- Dark Mode Toggle -->
       <v-btn @click="toggleTheme" icon>
