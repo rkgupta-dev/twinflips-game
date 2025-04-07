@@ -7,9 +7,9 @@
       <v-spacer></v-spacer>
       <v-toolbar-title>About Us</v-toolbar-title>
     </v-app-bar>
-    <v-container fluid class="about-page pa-4 pa-md-8">
+    <v-container fluid>
       <v-parallax
-        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+        src="https://img.freepik.com/free-vector/realistic-neon-lights-background_23-2148897041.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid&w=740"
         height="300"
         class="rounded-lg mb-8"
       >

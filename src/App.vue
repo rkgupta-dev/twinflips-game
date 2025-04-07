@@ -18,7 +18,7 @@
           Home
         </v-btn>
 
-        <v-btn to="/games" text class="no-style-btn" :ripple="false">
+        <v-btn to="/all-games" text class="no-style-btn" :ripple="false">
           <v-icon left>mdi-nintendo-game-boy</v-icon>
           All Games
         </v-btn>

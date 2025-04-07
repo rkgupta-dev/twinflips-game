@@ -32,7 +32,7 @@
       <!-- Auto-scroll Featured Games Carousel -->
       <div>
         <v-carousel cycle height="200px" hide-delimiters>
-          <v-carousel-item v-for="(game, index) in featuredGames" :key="index">
+          <v-carousel-item v-for="(game, index) in homeBanners" :key="index">
             <v-img
               :src="game.image"
               :alt="game.title"
@@ -76,7 +76,7 @@
 export default {
   data() {
     return {
-      featuredGames: [
+      homeBanners: [
         {
           title: "Game 1",
           image:
@@ -85,12 +85,12 @@ export default {
         {
           title: "Game 2",
           image:
-            "https://img.freepik.com/free-vector/ludo-game-from-different-perspectives_23-2148695829.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid",
+            "https://img.freepik.com/free-vector/space-game-level-background-with-crystal-platforms-rocket_88138-1122.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid&w=740",
         },
         {
           title: "Game 3",
           image:
-            "https://img.freepik.com/free-photo/huge-medieval-snake_587448-5095.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid",
+            "https://img.freepik.com/free-vector/exotic-tropical-snake-tree-jungle-with-pond_107791-8732.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid&w=740",
         },
       ],
       allGames: [

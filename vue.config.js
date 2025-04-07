@@ -5,8 +5,8 @@ module.exports = defineConfig({
   pwa: {
     name: "GameZone",
     short_name: "GameZone",
-    themeColor: "#673AB7", // or your app's main color
-    backgroundColor: "#673AB7",
+    themeColor: "#651FFF", // or your app's main color
+    backgroundColor: "#651FFF",
     display: "standalone",
     start_url: ".",
     manifestOptions: {

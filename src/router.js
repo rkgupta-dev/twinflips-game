@@ -6,6 +6,7 @@ import SnakeGame from "./components/SnakeGame.vue";
 import HomePage from "./components/HomePage.vue";
 import XoxoGame from "./components/XoxoGame.vue";
 import FlappyBirdGame from "./components/FlappyBirdGame.vue";
+import AllGamePage from "./components/AllGamePage.vue";
 
 Vue.use(Router);
 
@@ -14,6 +15,7 @@ export default new Router({
   routes: [
     { path: "/memory-game", component: MemoryGame },
     { path: "/", component: HomePage },
+    { path: "/all-games", component: AllGamePage },
     { path: "/about", component: AboutPage },
     { path: "/snake-game", component: SnakeGame },
     { path: "/xoxo-game", component: XoxoGame },
