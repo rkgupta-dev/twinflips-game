@@ -12,7 +12,11 @@
       <!-- Hero Section -->
       <v-row class="mb-6">
         <v-col cols="12">
-          <v-card class="hero-card overflow-hidden" height="260">
+          <v-card
+            class="overflow-hidden"
+            height="260"
+            style="border-radius: 15px"
+          >
             <v-img
               src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
               height="100%"

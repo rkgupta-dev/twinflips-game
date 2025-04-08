@@ -84,6 +84,7 @@
           <v-card
             color="rgba(15, 15, 15, 0.9)"
             class="d-flex flex-column justify-center align-center text-center"
+            style="border-radius: 15px"
           >
             <v-card-title class="text-h5 white--text justify-center">
               Game Over
@@ -93,20 +94,20 @@
               Your Score: <strong>{{ score }}</strong
               ><br />
               Highest Score: <strong>{{ highScore }}</strong>
-            </v-card-text>
 
-            <v-card-actions class="justify-center my-2">
-              <v-btn
-                rounded
-                depressed
-                large
-                color="primary"
-                @click="startGame"
-                v-if="!gameStarted"
-              >
-                Play Again!
-              </v-btn>
-            </v-card-actions>
+              <div class="text-center mt-4">
+                <v-btn
+                  rounded
+                  depressed
+                  large
+                  color="primary"
+                  @click="startGame"
+                  v-if="!gameStarted"
+                >
+                  Play Again!
+                </v-btn>
+              </div>
+            </v-card-text>
           </v-card>
         </v-dialog>
       </v-dialog>
@@ -271,7 +272,7 @@ export default {
 <style scoped>
 .game-container {
   text-align: center;
-  border-radius: 10px;
+  border-radius: 15px;
   position: relative;
 }
 

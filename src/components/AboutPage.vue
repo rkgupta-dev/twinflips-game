@@ -11,7 +11,7 @@
       <v-parallax
         src="https://img.freepik.com/free-vector/realistic-neon-lights-background_23-2148897041.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid&w=740"
         height="300"
-        class="rounded-lg mb-8"
+        class="border-radius mb-8"
       >
         <v-row align="center" justify="center" class="fill-height">
           <v-col cols="12" class="text-center">
@@ -26,6 +26,7 @@
                 class="mt-4"
                 large
                 rounded
+                depressed
                 elevation="8"
                 to="/"
               >
@@ -433,6 +434,10 @@ p {
 
 .v-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.border-radius {
+  border-radius: 15px;
 }
 
 /* .v-card:hover {

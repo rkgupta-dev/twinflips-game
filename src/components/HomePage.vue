@@ -36,7 +36,7 @@
             <v-img
               :src="game.image"
               :alt="game.title"
-              class="carousel-image rounded-image"
+              class="carousel-image"
             ></v-img>
           </v-carousel-item>
         </v-carousel>
@@ -114,6 +114,11 @@ export default {
           image: "https://cdn-icons-png.flaticon.com/128/1496/1496830.png",
           link: "/flappybird-game",
         },
+        {
+          title: "Block Blast",
+          image: "https://cdn-icons-png.flaticon.com/128/8311/8311088.png",
+          link: "/blockblast-game",
+        },
       ],
     };
   },
@@ -140,7 +145,7 @@ export default {
 <style scoped>
 .custom-border {
   border: 1px solid var(--border-color) !important;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .light-mode {
@@ -155,9 +160,6 @@ export default {
   object-fit: cover;
   width: 100%;
   height: 100%;
-}
-
-.rounded-image {
   border-radius: 15px;
 }
 

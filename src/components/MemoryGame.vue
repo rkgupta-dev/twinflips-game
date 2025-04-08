@@ -12,12 +12,12 @@
         <v-row justify="center">
           <v-col cols="12" md="8" lg="6" class="text-center">
             <div class="my-3">
-              <v-chip class="mr-2" color="primary" outlined>
+              <v-chip class="mr-2" color="primary">
                 <v-icon left>mdi-cards</v-icon>
                 Matches: {{ matches }} of {{ cards.length / 2 }}
               </v-chip>
 
-              <v-chip color="primary" outlined>
+              <v-chip color="secondary">
                 <v-icon left>mdi-timer-outline</v-icon>
                 Time: {{ formatTime }}
               </v-chip>
@@ -110,6 +110,8 @@
                 color="primary"
                 elevation="5"
                 rounded
+                large
+                depressed
                 class="px-6 py-3 animate-button"
                 @click="showTimerDialog = false"
               >
@@ -262,7 +264,7 @@ export default {
 <style scoped>
 .custom-border {
   border: 1px solid var(--border-color) !important;
-  border-radius: 10px; /* Smooth rounded corners */
+  border-radius: 15px; /* Smooth rounded corners */
 }
 
 /* Light Mode Border */
@@ -306,7 +308,7 @@ export default {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-color) !important;
-  border-radius: 10px; /* Smooth rounded corners */
+  border-radius: 15px; /* Smooth rounded corners */
 }
 
 .card-back {

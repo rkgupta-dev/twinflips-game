@@ -459,7 +459,7 @@ export default {
 .game-card {
   max-width: 700px;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   background: #ffffff;
 }
@@ -469,12 +469,12 @@ export default {
   margin: 10px auto;
   width: 350px;
   height: 350px;
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 .game-board {
   border: 2px solid #ccc;
-  border-radius: 8px;
+  border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -527,7 +527,7 @@ export default {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 10;
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 @media (min-width: 800px) {
