@@ -116,7 +116,7 @@ export default {
         },
         {
           title: "Block Blast",
-          image: "https://cdn-icons-png.flaticon.com/128/8311/8311088.png",
+          image: "https://cdn-icons-png.flaticon.com/256/10086/10086769.png",
           link: "/blockblast-game",
         },
       ],

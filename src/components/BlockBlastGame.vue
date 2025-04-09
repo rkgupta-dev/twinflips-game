@@ -358,7 +358,7 @@ export default {
   data() {
     return {
       // Game settings
-      BOARD_SIZE: 8,
+      BOARD_SIZE: 10,
       POINTS_PER_LINE: 100,
       BLOCKS_PER_LEVEL: 10,
 
@@ -1056,14 +1056,14 @@ export default {
 
 .game-board {
   display: grid;
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   gap: 4px;
   padding: 4px;
 }
 
 .game-row {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   gap: 4px;
 }
 
@@ -1326,28 +1326,45 @@ export default {
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
-
 @media (max-width: 600px) {
   .game-cell {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
   }
 
   .block-cell {
     width: 20px;
     height: 20px;
+    border-radius: 2px;
   }
 }
 
 @media (max-width: 480px) {
   .game-cell {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
   }
 
   .block-cell {
     width: 18px;
     height: 18px;
+    border-radius: 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .game-cell {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+  }
+
+  .block-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
   }
 }
 </style>
