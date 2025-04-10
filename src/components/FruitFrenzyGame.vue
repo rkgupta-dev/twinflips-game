@@ -7,6 +7,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-title>Fruit Frenzy</v-toolbar-title>
     </v-app-bar>
+
     <v-container
       fluid
       class="d-flex flex-column align-center justify-center fill-height"
@@ -43,7 +44,23 @@
           "
         ></canvas>
 
-        <!-- Overlay shown when game hasn't started -->
+        <div class="my-5 d-flex justify-center">
+          <v-btn
+            depressed
+            rounded
+            large
+            color="primary"
+            @click="togglePause"
+            v-if="hasGameStarted && !showGameOverDialog"
+          >
+            <v-icon left>
+              {{ isRunning ? "mdi-pause-circle" : "mdi-play-circle" }}
+            </v-icon>
+            {{ isRunning ? "Pause" : "Resume" }}
+          </v-btn>
+        </div>
+
+        <!-- Start Overlay -->
         <div
           v-if="!hasGameStarted"
           class="start-overlay d-flex flex-column align-center justify-center"
@@ -52,7 +69,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 99%;
+            height: 90%;
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 10;
             border-radius: 15px;
@@ -78,6 +95,12 @@
           <p class="text-subtitle-2 secondary--text">
             Best Score: {{ bestScore }}
           </p>
+          <p
+            v-if="showWowText"
+            class="text-h6 mt-2 pink--text font-weight-bold"
+          >
+            Wow! You broke the record! 🎉
+          </p>
           <v-btn
             color="primary"
             depressed
@@ -95,6 +118,8 @@
 </template>
 
 <script>
+import confetti from "canvas-confetti";
+
 export default {
   data() {
     return {
@@ -106,7 +131,7 @@ export default {
       fruits: [],
       slicedPieces: [],
       score: 0,
-      bestScore: localStorage.getItem("bestScore") || 0,
+      bestScore: parseInt(localStorage.getItem("bestScore")) || 0,
       timer: 60,
       isRunning: false,
       trail: [],
@@ -114,6 +139,7 @@ export default {
       slashSound: null,
       gameInterval: null,
       fruitSpawner: null,
+      showWowText: false,
     };
   },
   mounted() {
@@ -135,6 +161,16 @@ export default {
       this.spawnFruit();
       this.startTimer();
     },
+    togglePause() {
+      this.isRunning = !this.isRunning;
+      if (this.isRunning) {
+        this.startGameLoop();
+        this.spawnFruit();
+      } else {
+        cancelAnimationFrame(this.animationFrameId);
+        clearInterval(this.fruitSpawner);
+      }
+    },
     playAgain() {
       this.startGame();
     },
@@ -144,7 +180,8 @@ export default {
       this.score = 0;
       this.timer = 60;
       this.trail = [];
-      this.isRunning = false;
+      this.showWowText = false;
+      this.isRunning = true;
       clearInterval(this.fruitSpawner);
       clearInterval(this.gameInterval);
       cancelAnimationFrame(this.animationFrameId);
@@ -164,6 +201,7 @@ export default {
       canvas.removeEventListener("touchmove", this.trackTouch);
     },
     trackMouse(e) {
+      if (!this.isRunning) return;
       const rect = this.$refs.canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -172,6 +210,7 @@ export default {
       this.checkSlice(x, y);
     },
     trackTouch(e) {
+      if (!this.isRunning) return;
       e.preventDefault();
       const rect = this.$refs.canvas.getBoundingClientRect();
       const touch = e.touches[0];
@@ -238,7 +277,6 @@ export default {
       );
     },
     startGameLoop() {
-      this.isRunning = true;
       const loop = () => {
         if (!this.isRunning) return;
         this.ctx.clearRect(0, 0, this.canvasSize, this.canvasSize);
@@ -307,13 +345,15 @@ export default {
       }
     },
     startTimer() {
-      this.timer = 60; // You can increase it to 60
+      this.timer = 60;
       this.gameInterval = setInterval(() => {
-        this.timer--;
-        if (this.timer <= 0) {
-          clearInterval(this.gameInterval);
-          clearInterval(this.fruitSpawner);
-          this.endGame();
+        if (this.isRunning) {
+          this.timer--;
+          if (this.timer <= 0) {
+            clearInterval(this.gameInterval);
+            clearInterval(this.fruitSpawner);
+            this.endGame();
+          }
         }
       }, 1000);
     },
@@ -322,6 +362,8 @@ export default {
       if (this.score > this.bestScore) {
         this.bestScore = this.score;
         localStorage.setItem("bestScore", this.bestScore);
+        this.showWowText = true;
+        confetti(); // Show confetti
       }
       this.showGameOverDialog = true;
     },
