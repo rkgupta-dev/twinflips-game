@@ -43,6 +43,7 @@ export default {
         "/xoxo-game",
         "/flappybird-game",
         "/blockblast-game",
+        "/fruitfrenzy-game",
       ];
       const path = this.$route.path.replace(/\/$/, ""); // remove trailing slash
       return gamePaths.includes(path);

@@ -8,6 +8,7 @@ import XoxoGame from "./components/XoxoGame.vue";
 import FlappyBirdGame from "./components/FlappyBirdGame.vue";
 import AllGamePage from "./components/AllGamePage.vue";
 import BlockBlastGame from "./components/BlockBlastGame.vue";
+import FruitFrenzyGame from "./components/FruitFrenzyGame.vue";
 
 Vue.use(Router);
 
@@ -22,5 +23,6 @@ export default new Router({
     { path: "/xoxo-game", component: XoxoGame },
     { path: "/flappybird-game", component: FlappyBirdGame },
     { path: "/blockblast-game", component: BlockBlastGame },
+    { path: "/fruitfrenzy-game", component: FruitFrenzyGame },
   ],
 });

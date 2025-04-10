@@ -119,6 +119,11 @@ export default {
           image: "https://cdn-icons-png.flaticon.com/256/10086/10086769.png",
           link: "/blockblast-game",
         },
+        {
+          title: "Fruit Frenzy",
+          image: "https://cdn-icons-png.flaticon.com/128/15677/15677125.png",
+          link: "/fruitfrenzy-game",
+        },
       ],
     };
   },
