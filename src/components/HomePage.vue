@@ -31,7 +31,7 @@
     <v-container>
       <!-- Auto-scroll Featured Games Carousel -->
       <div>
-        <v-carousel cycle height="200px" hide-delimiters>
+        <v-carousel v-model="currentIndex" cycle height="200px" hide-delimiters>
           <v-carousel-item v-for="(game, index) in homeBanners" :key="index">
             <v-img
               :src="game.image"
@@ -40,6 +40,11 @@
             ></v-img>
           </v-carousel-item>
         </v-carousel>
+      </div>
+      <div class="d-flex justify-center mt-2">
+        <v-chip outlined small color="primary">
+          {{ currentIndex + 1 }} / {{ homeBanners.length }}
+        </v-chip>
       </div>
 
       <!-- Section Title -->
@@ -76,6 +81,7 @@
 export default {
   data() {
     return {
+      currentIndex: 0,
       homeBanners: [
         {
           title: "Game 1",
