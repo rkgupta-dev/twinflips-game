@@ -36,6 +36,17 @@
             ></div>
           </div>
 
+          <!-- Start Overlay -->
+          <div
+            class="start-overlay d-flex flex-column align-center justify-center"
+            v-if="!gameStarted"
+          >
+            <h2 class="text-h5 mb-4 primary--text">Let's Play!</h2>
+            <v-btn color="primary" depressed rounded large @click="startGame">
+              Start Game
+            </v-btn>
+          </div>
+
           <!-- Difficulty Selector -->
           <v-btn-toggle
             v-model="selectedLevel"
@@ -56,16 +67,19 @@
             </v-btn>
           </v-btn-toggle>
 
-          <!-- <v-btn
-              class="my-5"
+          <!-- Start Game or Resume Button -->
+          <div class="text-center">
+            <v-btn
+              v-if="!gameStarted"
               color="primary"
-              @click="resetGame"
+              @click="startGame"
               large
               rounded
               depressed
             >
-              {{ isGameOver ? "Play Again" : "Restart" }}
-            </v-btn> -->
+              Start Game
+            </v-btn>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -85,13 +99,13 @@
         </p>
         <v-btn
           class="mt-4"
-          color="deep-purple accent-4"
+          color="primary"
           @click="resetGame"
           rounded
           large
           depressed
         >
-          {{ isGameOver ? "Play Again" : "Restart" }}
+          {{ isGameOver ? "Play Again!" : "Restart" }}
         </v-btn>
       </v-card>
     </v-dialog>
@@ -103,6 +117,7 @@ export default {
   data() {
     return {
       showBallGameOverDialog: false,
+      gameStarted: false, // Track if the game has started
       canvasWidth: 0,
       canvasHeight: 500,
       ctx: null,
@@ -137,7 +152,6 @@ export default {
     window.addEventListener("keydown", this.handleKeyDown);
     window.addEventListener("keyup", this.handleKeyUp);
     this.setDifficulty();
-    this.startGame();
   },
   beforeDestroy() {
     cancelAnimationFrame(this.animationFrameId);
@@ -279,6 +293,7 @@ export default {
       this.animationFrameId = requestAnimationFrame(this.gameLoop);
     },
     startGame() {
+      this.gameStarted = true;
       this.isGameOver = false;
       this.score = 0; // Reset score
       this.showBallGameOverDialog = false;
@@ -322,6 +337,19 @@ export default {
   border-radius: 15px;
 }
 
+.start-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://img.freepik.com/free-vector/boy-throwing-ball-white-background_1308-79134.jpg?ga=GA1.1.1001727922.1730456661&semt=ais_hybrid&w=740");
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .mobile-slider {
   position: absolute;
   top: 0;
@@ -329,10 +357,6 @@ export default {
   height: 500px;
   width: 100%;
   z-index: 10;
-}
-
-.v-btn {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .v-dialog .v-card {
