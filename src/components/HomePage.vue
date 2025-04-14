@@ -31,7 +31,7 @@
     <v-container>
       <!-- Auto-scroll Featured Games Carousel -->
       <div>
-        <v-carousel v-model="currentIndex" cycle height="200px" hide-delimiters>
+        <v-carousel v-model="currentIndex" cycle height="220px" hide-delimiters>
           <v-carousel-item v-for="(game, index) in homeBanners" :key="index">
             <v-img
               :src="game.image"
@@ -73,6 +73,11 @@
           </v-card>
         </v-col>
       </v-row>
+      <!-- Coming Soon Section -->
+      <!-- <div class="my-4 text-subtitle-1 font-weight-bold text-primary">
+        Coming Soon!
+        <v-icon right color="primary">mdi-gamepad-variant</v-icon>
+      </div> -->
     </v-container>
   </div>
 </template>
@@ -129,6 +134,28 @@ export default {
           title: "Fruit Frenzy",
           image: "https://cdn-icons-png.flaticon.com/128/15677/15677125.png",
           link: "/fruitfrenzy-game",
+        },
+        {
+          title: "Paddle Ball",
+          image: "https://cdn-icons-png.flaticon.com/256/5965/5965344.png",
+          link: "/paddleball-game",
+        },
+      ],
+      upcomingGames: [
+        {
+          title: "Space Quest",
+          releaseDate: "May 2025",
+          image: "https://via.placeholder.com/200x300?text=Space+Quest",
+        },
+        {
+          title: "Adventure Island",
+          releaseDate: "June 2025",
+          image: "https://via.placeholder.com/200x300?text=Adventure+Island",
+        },
+        {
+          title: "Mystic Journey",
+          releaseDate: "July 2025",
+          image: "https://via.placeholder.com/200x300?text=Mystic+Journey",
         },
       ],
     };
