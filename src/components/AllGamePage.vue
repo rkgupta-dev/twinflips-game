@@ -92,7 +92,7 @@
                   <v-spacer></v-spacer>
                   <v-chip
                     small
-                    :color="game.isNew ? 'deep-purple' : 'grey'"
+                    :color="game.isNew ? 'primary' : 'secondary'"
                     text-color="white"
                     class="ml-2"
                   >
@@ -107,7 +107,6 @@
               <v-divider class="mx-4"></v-divider>
 
               <v-card-actions>
-                <v-btn color="deep-purple darken-2" text>Details</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn
                   color="primary"
@@ -257,8 +256,5 @@ export default {
 .game-card {
   border-radius: 15px;
   transition: transform 0.2s;
-}
-.game-card:hover {
-  transform: scale(1.02);
 }
 </style>

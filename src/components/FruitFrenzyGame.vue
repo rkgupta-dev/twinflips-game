@@ -93,7 +93,7 @@
           <h2 class="text-h5 mb-4 primary--text">⏰ Time's Up!</h2>
           <p class="text-subtitle-1 white--text">Final Score: {{ score }}</p>
           <p class="text-subtitle-2 secondary--text">
-            Best Score: {{ bestScore }}
+            High Score: {{ bestScore }}
           </p>
           <p
             v-if="showWowText"
@@ -262,6 +262,7 @@ export default {
           rotation: -0.1,
           angle: 0,
           alpha: 1,
+          clip: "left", // ⬅️ Only show left half
         },
         {
           emoji: fruit.emoji,
@@ -273,6 +274,7 @@ export default {
           rotation: 0.1,
           angle: 0,
           alpha: 1,
+          clip: "right", // ⬅️ Only show right half
         }
       );
     },
@@ -305,16 +307,33 @@ export default {
         piece.vy += piece.gravity;
         piece.angle += piece.rotation;
         piece.alpha -= 0.01;
+
         if (piece.alpha <= 0) {
           this.slicedPieces.splice(index, 1);
           return;
         }
+
+        const fontSize = 30;
+
         this.ctx.save();
         this.ctx.translate(piece.x, piece.y);
         this.ctx.rotate(piece.angle);
         this.ctx.globalAlpha = piece.alpha;
-        this.ctx.font = `30px Arial`;
+        this.ctx.font = `${fontSize}px Arial`;
         this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
+
+        // Clip the emoji to half (left or right)
+        this.ctx.beginPath();
+        this.ctx.rect(
+          piece.clip === "left" ? -fontSize : 0,
+          -fontSize,
+          fontSize,
+          fontSize * 2
+        );
+        this.ctx.clip();
+
+        // Draw the sliced emoji
         this.ctx.fillText(piece.emoji, 0, 0);
         this.ctx.restore();
       });
