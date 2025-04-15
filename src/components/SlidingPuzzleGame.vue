@@ -113,8 +113,10 @@
             timeElapsed
           }}</span>
           seconds! ⏱️
+          <div v-if="congratsMessage" class="mt-4 success--text">
+            {{ congratsMessage }}
+          </div>
         </v-card-subtitle>
-
         <v-card-actions class="d-flex justify-center">
           <v-btn color="primary" dark rounded large @click="restart">
             <v-icon left>mdi-restart</v-icon>
@@ -127,6 +129,8 @@
 </template>
 
 <script>
+import confetti from "canvas-confetti";
+
 export default {
   data() {
     return {
@@ -137,8 +141,8 @@ export default {
       showSlidingPuzzleDialog: false,
       gameStarted: false,
       bestScore: {
-        time: null,
-        moves: null,
+        time: "N/A",
+        moves: "N/A",
       },
     };
   },
@@ -241,7 +245,8 @@ export default {
       this.restart();
     },
     updateBestScore() {
-      const currentBest = JSON.parse(localStorage.getItem("bestScore")) || {};
+      const currentBest =
+        JSON.parse(localStorage.getItem("slidingPuzzleHignScore")) || {};
       const isBetter =
         !currentBest.time ||
         this.timeElapsed < currentBest.time ||
@@ -250,15 +255,34 @@ export default {
 
       if (isBetter) {
         this.bestScore = { time: this.timeElapsed, moves: this.moves };
-        localStorage.setItem("bestScore", JSON.stringify(this.bestScore));
+        localStorage.setItem(
+          "slidingPuzzleHignScore",
+          JSON.stringify(this.bestScore)
+        );
+        this.congratsMessage =
+          "🎉 Congratulations! You broke the record. Wow, nice! Well played! 🥳";
+
+        // Trigger confetti
+        confetti({
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.6 },
+        });
       } else {
         this.bestScore = currentBest;
+        this.congratsMessage = "";
       }
     },
   },
   mounted() {
-    const savedScore = JSON.parse(localStorage.getItem("bestScore"));
-    if (savedScore) {
+    const savedScore = JSON.parse(
+      localStorage.getItem("slidingPuzzleHignScore")
+    );
+    if (
+      savedScore &&
+      savedScore.time !== undefined &&
+      savedScore.moves !== undefined
+    ) {
       this.bestScore = savedScore;
     }
   },
