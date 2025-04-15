@@ -140,6 +140,11 @@ export default {
           image: "https://cdn-icons-png.flaticon.com/256/5965/5965344.png",
           link: "/paddleball-game",
         },
+        {
+          title: "Sliding Puzzle",
+          image: "https://cdn-icons-png.flaticon.com/128/3787/3787054.png",
+          link: "/slidingpuzzle-game",
+        },
       ],
       upcomingGames: [
         {
