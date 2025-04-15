@@ -145,6 +145,11 @@ export default {
           image: "https://cdn-icons-png.flaticon.com/128/3787/3787054.png",
           link: "/slidingpuzzle-game",
         },
+        {
+          title: "Caged Bird",
+          image: "https://cdn-icons-png.flaticon.com/256/8995/8995716.png",
+          link: "/cagedbird-game",
+        },
       ],
       upcomingGames: [
         {

@@ -11,6 +11,7 @@ import BlockBlastGame from "./components/BlockBlastGame.vue";
 import FruitFrenzyGame from "./components/FruitFrenzyGame.vue";
 import PaddleBallGame from "./components/PaddleBallGame.vue";
 import SlidingPuzzleGame from "./components/SlidingPuzzleGame.vue";
+import CagedBirdGame from "./components/CagedBirdGame.vue";
 
 Vue.use(Router);
 
@@ -28,5 +29,6 @@ export default new Router({
     { path: "/fruitfrenzy-game", component: FruitFrenzyGame },
     { path: "/paddleball-game", component: PaddleBallGame },
     { path: "/slidingpuzzle-game", component: SlidingPuzzleGame },
+    { path: "/cagedbird-game", component: CagedBirdGame },
   ],
 });
